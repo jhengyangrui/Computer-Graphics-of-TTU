@@ -1,0 +1,42 @@
+# 
+# Wavefront material file
+# Converted by the DEEP Exploration  2.1.10.1214
+# Right Hemisphere, LTD
+# http://www.righthemisphere.com/
+# 
+
+newmtl MetalAlluminium
+Ka 0 0 0
+Kd 0.0509804 0.0509804 0.0509804
+Ks 0.564706 0.564706 0.564706
+illum 2
+Ns 512
+
+newmtl _7___Default
+Ka 0.25098 0.243137 0.101961
+Kd 0.25098 0.243137 0.101961
+Ks 0.898039 0.898039 0.898039
+illum 2
+Ns 2.14355
+map_Kd OREH.JPG
+
+newmtl Gold_nice
+Ka 0 0 0
+Kd 0.392157 0.219608 0
+Ks 0.435294 0.305882 0.184314
+illum 2
+Ns 512
+
+newmtl _2___Default
+Ka 0 0 0
+Kd 0 0 0
+Ks 0.211765 0.211765 0.211765
+illum 2
+Ns 1024
+
+newmtl jjeltii
+Ka 0 0 0
+Kd 0.913726 0.8 0.0313726
+Ks 0.329412 0.329412 0.329412
+illum 2
+Ns 2048

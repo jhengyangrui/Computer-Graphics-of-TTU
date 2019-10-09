@@ -1,0 +1,41 @@
+# 
+# Wavefront material file
+# Converted by the DEEP Exploration  2.1.10.1214
+# Right Hemisphere, LTD
+# http://www.righthemisphere.com/
+# 
+
+newmtl metal
+Ka 0.9 0.9 0.9
+Kd 0.6 0.6 0.6
+Ks 0.9 0.9 0.9
+illum 2
+Ns 6
+
+newmtl eraser
+Ka 0.7 0.4 0.3
+Kd 0.7 0.4 0.3
+Ks 0.9 0.9 0.9
+illum 2
+Ns 2
+
+newmtl _4___Default
+Ka 0.7 0.6 0.4
+Kd 0.7 0.6 0.4
+Ks 0.9 0.9 0.9
+illum 2
+Ns 2
+
+newmtl lead
+Ka 0.2 0.2 0.2
+Kd 0.2 0.2 0.2
+Ks 0.9 0.9 0.9
+illum 2
+Ns 6
+
+newmtl pencil
+Ka 0.7 0.4 0
+Kd 0.7 0.4 0
+Ks 0.9 0.9 0.9
+illum 2
+Ns 5

@@ -1,0 +1,65 @@
+# 
+# Wavefront material file
+# Converted by the DEEP Exploration  2.1.10.1214
+# Right Hemisphere, LTD
+# http://www.righthemisphere.com/
+# 
+
+newmtl w
+Ka 0 0 0
+Kd 0.627451 0.615686 0.560784
+Ks 0 0 0
+illum 2
+Ns 4
+
+newmtl gold
+Ka 0 0 0
+Kd 0.431373 0.298039 0.113725
+Ks 0.866667 0.596078 0.227451
+illum 2
+Ns 39.3966
+
+newmtl leseband
+Ka 0 0 0
+Kd 0.384314 0 0
+Ks 0.164706 0 0
+illum 2
+Ns 18.3792
+
+newmtl s2
+Ka 0 0 0
+Kd 0.658824 0.65098 0.592157
+Ks 0 0 0
+illum 2
+Ns 4
+map_Kd SEITE2.png
+
+newmtl goldr
+Ka 0 0 0
+Kd 0.431373 0.298039 0.113725
+Ks 0.866667 0.596078 0.227451
+illum 2
+Ns 39.3966
+
+newmtl leder
+Ka 0 0 0
+Kd 0.211765 0.14902 0.101961
+Ks 0.121569 0.0862745 0.0588235
+illum 2
+Ns 16
+
+newmtl s1
+Ka 0 0 0
+Kd 0.658824 0.65098 0.592157
+Ks 0 0 0
+illum 2
+Ns 4
+map_Kd S3.png
+
+newmtl s3
+Ka 0 0 0
+Kd 0.54902 0.545098 0.494118
+Ks 0 0 0
+illum 2
+Ns 4
+map_Kd SEITE2.png

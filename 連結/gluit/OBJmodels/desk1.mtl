@@ -1,0 +1,13 @@
+# 
+# Wavefront material file
+# Converted by the DEEP Exploration  2.1.10.1214
+# Right Hemisphere, LTD
+# http://www.righthemisphere.com/
+# 
+
+newmtl Reflection_Chrom
+Ka 0 0.00784314 0.129412
+Kd 1 0.94902 0.792157
+Ks 1 1 1
+illum 2
+Ns 32

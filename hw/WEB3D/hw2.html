@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#info {
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    color: #ff0000
+}
+</style>
+</head>
+
+
+<body>
+<div id="info">demo page
+    <br/> <a href="javascript:Toggle();">toggle </a>
+
+</div>
+<script src = "js/three.min.js"></script>
+<script src = "js/OrbitControls.js"></script>
+
+<audio id = "dooropen" style = "display:none">
+<source src = "music/opendoormusic.mp3" type = 'audio/mp3'>
+<audio id = "doorclose" style = "display:none">
+<source src = "music/closedoormusic.mp3" type = 'audio/mp3'>
+</audio>
+
+
+<script>
+var camera, scene, renderer, light, light2, controls;
+var angle = 0;
+var turn = false;
+var Doorshaft,Doorshaft2,Doormesh,dooredge1,dooredge2,dooredge3,ball,ball2;
+//var dooropen,doorclose;
+var isPaused = false, soundVal = 1.0, sign = 1.0;
+
+init();
+animate();
+
+function Toggle() {
+    turn = !turn;
+}
+
+function init() {
+	//dooropen = document.getElementById ('opendoormusic');
+	//doorclose = document.getElementById ('closedoormusic');
+
+    scene = new THREE.Scene();
+
+    camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 10000);
+    camera.position.y = 100;
+    camera.position.z = 100;
+    scene.add(camera);
+
+	var metalTexture1 = THREE.ImageUtils.loadTexture("images/metal.jpg");
+    var geometry = new THREE.CylinderGeometry(1, 1, 5);
+    var material = new THREE.MeshLambertMaterial({map:metalTexture1});
+	
+    Doorshaft = new THREE.Mesh(geometry, material);
+    scene.add(Doorshaft);
+	Doorshaft.position.set(0,40,0);
+	
+	var geometry2 = new THREE.CylinderGeometry(1, 1, 5);
+    var material2 = new THREE.MeshLambertMaterial({map:metalTexture1});
+	
+    Doorshaft2 = new THREE.Mesh(geometry2, material2);
+    Doorshaft.add(Doorshaft2);
+	Doorshaft2.position.set(0,-25,0);
+	
+	var ballgeometry = new THREE.SphereGeometry(1, 20, 30);
+    var ballmaterial = new THREE.MeshLambertMaterial({map:metalTexture1});
+	
+    ball = new THREE.Mesh(ballgeometry, ballmaterial);
+    Doorshaft.add(ball);
+	ball.position.set(-30,-15,1.5);
+	
+	ball2 = new THREE.Mesh(ballgeometry, ballmaterial);
+    Doorshaft.add(ball2);
+	ball2.position.set(-30,-15,-1.5);
+	
+	doormesh = createMesh(new THREE.BoxGeometry(35, 50, 2), "wood.jpg", "woodbump.jpg");
+	/*var woodTexture1 = THREE.ImageUtils.loadTexture("images/wood.jpg");
+	var doorgeometry = new THREE.BoxGeometry(35, 50, 2);
+    var doormaterial = new THREE.MeshLambertMaterial({map:woodTexture1});
+	
+	doormesh = new THREE.Mesh(doorgeometry, doormaterial);*/
+	Doorshaft.add(doormesh);
+	doormesh.position.set(-18,-15,0);
+	
+	dooredge1 = createMesh(new THREE.BoxGeometry(2, 50, 2), "wood2.jpg", "wood2bump.jpg");
+	/*var woodTexture2 = THREE.ImageUtils.loadTexture("images/wood2.jpg");
+	var dooredgegeometry1 = new THREE.BoxGeometry(2, 50, 2);
+    var dooredgematerial1 = new THREE.MeshLambertMaterial({map:woodTexture2});
+	
+	dooredge1 = new THREE.Mesh(dooredgegeometry1, dooredgematerial1);*/
+	scene.add(dooredge1);	
+	dooredge1.position.set(-36,25,0);
+	
+	dooredge2 = createMesh(new THREE.BoxGeometry(2, 50, 2), "wood2.jpg", "wood2bump.jpg");
+	/*var dooredgegeometry2 = new THREE.BoxGeometry(2, 50, 2);
+    var dooredgematerial2 = new THREE.MeshLambertMaterial({map:woodTexture2});
+	
+	dooredge2 = new THREE.Mesh(dooredgegeometry2, dooredgematerial2);*/
+	dooredge2.position.set(1.5,25,0);
+	scene.add(dooredge2);
+	
+	dooredge3 = createMesh(new THREE.BoxGeometry(40, 2, 2), "wood2.jpg", "wood2bump.jpg");
+	/*var dooredgegeometry3 = new THREE.BoxGeometry(40, 2, 2);
+    var dooredgematerial3 = new THREE.MeshLambertMaterial({map:woodTexture2});
+	
+	dooredge3 = new THREE.Mesh(dooredgegeometry3, dooredgematerial3);*/
+	dooredge3.position.set(-17,50,0);
+	scene.add(dooredge3);
+
+    light = new THREE.PointLight(0xffffff);
+    light.position.set(100, 300, 200);
+    scene.add(light);
+	
+	light2 = new THREE.PointLight(0xffffff);
+    light2.position.set(100, 300, -200);
+    scene.add(light2);
+
+    var gridXZ = new THREE.GridHelper(100, 10);
+    gridXZ.setColors(new THREE.Color(0xff0000), new THREE.Color(0xffffff));
+    scene.add(gridXZ);
+
+    renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setClearColor(0x888888);
+
+    controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+    document.body.appendChild(renderer.domElement);
+
+}
+
+function animate() {
+    controls.update();
+	
+	
+	if (turn){
+		if(/*angle >= 0 &&*/ angle <= 1.5){
+			angle += 0.02;
+			dooropen.play();
+			if(angle >= 1.5 )
+				dooropen.pause();
+		}
+	}else{
+		if(angle >= 0 /*&& angle <= 1.5*/){
+			angle -= 0.02;			
+			dooropen.play();
+			if(angle <= 0){
+				dooropen.pause();
+				//doorclose.pause();
+				//if(angle == 0)
+					doorclose.play();
+			}
+		}
+	}
+
+    //mesh.position.set(50 * Math.cos(angle), 0, -50 * Math.sin(angle));
+	Doorshaft.rotation.y = angle;
+    requestAnimationFrame(animate);
+    render();
+}
+function createMesh(geom, imageFile, bump) 
+{
+	geom.computeVertexNormals();
+
+	//var mat = new THREE.MeshPhongMaterial({map:texture,bumpMap:bump});
+	var mat = new THREE.MeshPhongMaterial();
+	var texture = THREE.ImageUtils.loadTexture("images/" + imageFile)
+	mat.map = texture;
+
+	if (bump) {
+		var bump = THREE.ImageUtils.loadTexture("images/" + bump)
+		mat.bumpMap = bump;
+		mat.bumpScale = 1;
+	}
+
+	var mesh = new THREE.Mesh(geom, mat);
+
+	return mesh;
+}
+function render() {
+    renderer.render(scene, camera);
+}
+
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,216 @@
+
+<!DOCTYPE html>
+<html>
+ <head> 
+  <title>MD2 Animation</title> 
+<style>
+	body {
+		background-color: #fff;
+		color: #111;
+		margin: 0px;
+		overflow: hidden;
+		font-family: Monospace;
+		font-size: 20px;
+		position: absolute;
+	}
+	#info {
+		position: absolute;
+		top: 0px; width: 100%;
+		
+		padding: 5px;
+		text-align: center;
+		color: #ffff00
+	}
+	a {color: #00ffff}
+	strong {color:red}
+</style>
+</head> 
+
+ <body> 
+
+<div id="WebGL-output"> 
+</div> 
+
+<script src = "js/r69three.js"></script>
+<script src = "js/OrbitControls.js"></script>
+<script src="js/dat.gui.min.js"></script> 
+<script src="js/stats.min.js"></script>
+<audio id="sound" autoplay loop style="display:none">
+<source src="music/GANGNAM STYLE.mp3" type='audio/mp3'>
+</audio>	
+<script>
+//////////////////////////////////
+/// from
+/// http://www.smartjava.org/ltjs/chapter-09/15-animation-from-md2.html
+////////////////////////////////////////////////////////////////////////////
+
+var scene, renderer, camera, mesh;
+var clock = new THREE.Clock();
+var orbitcontrols;
+
+var stats;
+init();
+render();
+
+function init () 
+{
+	soundTrack = document.getElementById ('sound');
+	scene = new THREE.Scene();
+
+	camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+	renderer = new THREE.WebGLRenderer();
+	renderer.setClearColor(new THREE.Color(0x888888, 1.0));
+	renderer.setSize(window.innerWidth, window.innerHeight);
+
+	document.body.appendChild (renderer.domElement);
+
+	camera.position.x = -50;
+	camera.position.y = 240;
+	camera.position.z = 360;
+	camera.lookAt(new THREE.Vector3(0, 0, 0));
+
+	orbitcontrols = new THREE.OrbitControls(camera, renderer.domElement);
+
+/*	
+	var spotLight = new THREE.SpotLight(0xffffff);
+	spotLight.position.set(-50, 70, 60);
+	spotLight.intensity = 1;
+	scene.add(spotLight);
+*/
+
+	/*var gridXZ = new THREE.GridHelper(100, 10);
+	gridXZ.setColors( new THREE.Color(0xff0000), new THREE.Color(0xffffff) );
+	scene.add(gridXZ);*/
+
+	//spotlight
+	renderer.shadowMapEnabled = true;
+    renderer.shadowMapType = THREE.PCFShadowMap;
+    spotLight = new THREE.SpotLight(0xffffff, 1);
+    spotLight.position.set(0, 300, 300);
+    spotLight.angle = Math.PI / 3;
+    spotLight.castShadow = true;
+    spotLight.shadowMapWidth = 1024;
+    spotLight.shadowMapHeight = 1024;
+    spotLight.shadowCameraNear = 5;
+    spotLight.shadowCameraFar = 4000;
+    spotLight.shadowCameraFov = spotLight.angle / Math.PI * 180;
+    spotLight.exponent = 20;
+    scene.add(spotLight);
+
+	//floor
+	var floorTexture = new THREE.ImageUtils.loadTexture( 'images/floor.jpg' );
+    var ground = new THREE.Mesh(new THREE.PlaneGeometry(400, 400, 130, 130),new THREE.MeshLambertMaterial({ map: floorTexture, side: THREE.DoubleSide }));
+    ground.rotation.x = -Math.PI / 2;
+    scene.add(ground);
+	ground.receiveShadow = true;
+	
+	// call the render function
+	//var step = 0;
+
+	// setup the control gui
+	/*var controls = new function () {
+		// we need the first child, since it's a multimaterial
+		this.animations = 'stand';
+		this.fps = 10;
+	}*/
+
+	//var gui = new dat.GUI();
+
+	var loader = new THREE.JSONLoader();
+	//loader.load('models/ogro.js', function (geometry, mat) {
+	//loader.load('models/laalaa.js', function (geometry, mat) {
+	loader.load('models/md2/mario/mario.js', function (geometry, mat) {
+		geometry.computeMorphNormals();
+
+		var mat = new THREE.MeshBasicMaterial(
+				{
+					//map: THREE.ImageUtils.loadTexture("models/skin.jpg"),
+					//map: THREE.ImageUtils.loadTexture("models/laalaa.png"),
+					map: THREE.ImageUtils.loadTexture("models/md2/mario/mario.png"),
+					morphTargets: true, morphNormals: true
+				});
+
+		mesh = new THREE.MorphAnimMesh(geometry, mat);
+
+
+		mesh.rotation.y = 0.7;
+		mesh.parseAnimations();
+
+		// parse the animations and add them to the control
+		/*var animLabels = [];
+		for (var key in mesh.geometry.animations) {
+			if (key === 'length' || !mesh.geometry.animations.hasOwnProperty(key)) continue;
+			animLabels.push(key);
+		}
+
+		gui.add(controls, 'animations', animLabels).onChange(function (e) {
+			mesh.playAnimation(controls.animations, controls.fps);
+		});
+		gui.add(controls, 'fps', 1, 20).step(1).onChange(function (e) {
+			mesh.playAnimation(controls.animations, controls.fps);
+		});*/
+		//mesh.playAnimation('stand', 1);
+		for (var i = -1; i <= 1; i++){
+			for (var j = -1; j <= 1; j++) {
+				var Md2IJ = mesh.clone();
+				Md2IJ.name = "MD2";
+				Md2IJ.position.set (150*i,25,150*j);
+				Md2IJ.playAnimation('taunt', 8);
+				Md2IJ.castShadow = true;
+				Md2IJ.receiveShadow = true;
+				scene.add(Md2IJ);
+			}
+		}
+
+
+		//scene.add(mesh);
+	});
+
+	window.addEventListener ('resize', onWindowResize, false);	
+	
+	// STATS
+	stats = new Stats();
+	stats.domElement.style.position = 'absolute';
+	stats.domElement.style.top = '0px';
+	stats.domElement.style.zIndex = 100;
+	document.body.appendChild( stats.domElement );
+}
+
+function onWindowResize()
+{
+	camera.aspect = window.innerWidth / window.innerHeight;
+	camera.updateProjectionMatrix();
+	renderer.setSize (window.innerWidth, window.innerHeight);
+}
+
+
+function render() 
+{
+	stats.update();
+	var delta = clock.getDelta();
+	orbitcontrols.update();
+	
+	if (mesh) {
+		// mesh.rotation.x+=0.006;
+		// mesh.rotation.y+=0.006;
+		mesh.position.y = 25;
+		if (mesh) {
+			mesh.updateAnimation(delta * 1000);
+			scene.traverse(function (mesh){
+				if(mesh instanceof(THREE.Mesh) && mesh.name=="MD2"){
+					mesh.updateAnimation(delta * 1000);
+				}
+			});
+			// mesh.rotation.y+=0.01;
+		}
+	}
+
+
+	requestAnimationFrame(render);
+	renderer.render(scene, camera);
+}
+
+</script>  
+ </body>
+</html>

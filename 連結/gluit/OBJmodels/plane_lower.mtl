@@ -1,0 +1,641 @@
+#
+# Wavefront material file: c:\alec\physics\programming\bin\resources\mesh\plane_lower.mtl
+#
+# Converted by the PolyTrans geometry converter from Okino Computer Graphics, Inc.
+# Date/time of export: 03/15/2007 09:26:58
+#
+# Bounding box of geometry = (-5.44151,3.88682,-8.40992) to (6.16239,7.31419,0.875473).
+
+newmtl default
+	Ns 32
+	d 1
+	illum 2
+	Kd 0.4 0.4 0.4
+	Ks 0.7 0.7 0.7
+	Ka 0.3 0.3 0.3
+
+newmtl _0
+	Ns 199
+	d 0.09
+	illum 2
+	Kd 0 0 0
+	Ks 0 0 0
+	Ka 0.34902 0.34902 0.34902
+
+newmtl _01
+	Ns 21
+	d 1
+	illum 2
+	Kd 0.160784 0.247059 0.168627
+	Ks 0 0 0
+	Ka 0.22714 0.34902 0.23822
+	map_Kd 1.jpg
+
+newmtl _02
+	Ns 199
+	d 0.09
+	illum 2
+	Kd 0 0 0
+	Ks 0 0 0
+	Ka 0.34902 0.34902 0.34902
+
+newmtl _1
+	Ns 199
+	d 0.09
+	illum 2
+	Kd 0 0 0
+	Ks 0 0 0
+	Ka 0.34902 0.34902 0.34902
+
+newmtl _10
+	Ns 2
+	d 1
+	illum 2
+	Kd 0.870588 0.658824 0.0784314
+	Ks 0 0 0
+	Ka 0.34902 0.264123 0.0314432
+	map_Kd 111.jpg
+
+newmtl _11
+	Ns 21
+	d 1
+	illum 2
+	Kd 0.996078 0.721569 0
+	Ks 0 0 0
+	Ka 0.34902 0.252833 0
+	map_Kd 2.jpg
+	map_bump -bm 0.25 21.jpg
+
+newmtl _1_10
+	Ns 2
+	d 1
+	illum 2
+	Kd 0.870588 0.658824 0.0784314
+	Ks 0 0 0
+	Ka 0.34902 0.264123 0.0314432
+	map_Kd 11_1.jpg
+
+newmtl _2
+	Ns 2
+	d 1
+	illum 2
+	Kd 0.0823529 0.0823529 0.0823529
+	Ks 0 0 0
+	Ka 0.34902 0.34902 0.34902
+
+newmtl _3
+	Ns 21
+	d 1
+	illum 2
+	Kd 0.168627 0.247059 0.156863
+	Ks 0 0 0
+	Ka 0.23822 0.34902 0.2216
+	map_Kd 11.jpg
+
+newmtl _4
+	Ns 21
+	d 1
+	illum 2
+	Kd 0.996078 0.721569 0
+	Ks 0 0 0
+	Ka 0.34902 0.252833 0
+	map_Kd 12.jpg
+	map_bump -bm 0.25 13.jpg
+
+newmtl _5
+	Ns 21
+	d 1
+	illum 2
+	Kd 0.996078 0.721569 0
+	Ks 0 0 0
+	Ka 0.34902 0.252833 0
+	map_Kd 14.jpg
+
+newmtl __10
+	Ns 199
+	d 0.09
+	illum 2
+	Kd 0 0 0
+	Ks 0 0 0
+	Ka 0.34902 0.34902 0.34902
+
+newmtl __101
+	Ns 2
+	d 1
+	illum 2
+	Kd 0.329412 0.211765 0.00392157
+	Ks 0 0 0
+	Ka 0.34902 0.22437 0.004155
+	map_Kd 1_1.jpg
+
+newmtl __102
+	Ns 199
+	d 0.09
+	illum 2
+	Kd 0 0 0
+	Ks 0 0 0
+	Ka 0.34902 0.34902 0.34902
+
+newmtl __11
+	Ns 199
+	d 0.09
+	illum 2
+	Kd 0 0 0
+	Ks 0 0 0
+	Ka 0.34902 0.34902 0.34902
+
+newmtl __12
+	Ns 2
+	d 1
+	illum 2
+	Kd 0.0823529 0.0823529 0.0823529
+	Ks 0 0 0
+	Ka 0.34902 0.34902 0.34902
+
+newmtl anotherbit0
+	Ns 2
+	d 1
+	illum 2
+	Kd 0.329412 0.211765 0.00784314
+	Ks 0 0 0
+	Ka 0.34902 0.22437 0.00830999
+	map_Kd anothe.jpg
+
+newmtl anotherlittleb0
+	Ns 2
+	d 1
+	illum 2
+	Kd 0.996078 0.721569 0.00392157
+	Ks 0 0 0
+	Ka 0.34902 0.252833 0.00137409
+	map_Kd anothe1.jpg
+
+newmtl anotherstrut0
+	Ns 2
+	d 1
+	illum 2
+	Kd 0.996078 0.721569 0.00392157
+	Ks 0 0 0
+	Ka 0.34902 0.252833 0.00137409
+	map_Kd anothe2.jpg
+
+newmtl anotherstrut_10
+	Ns 2
+	d 1
+	illum 2
+	Kd 0.996078 0.721569 0.00392157
+	Ks 0 0 0
+	Ka 0.34902 0.252833 0.00137409
+	map_Kd anothe3.jpg
+
+newmtl axle0
+	Ns 2
+	d 1
+	illum 2
+	Kd 0.996078 0.721569 0.00392157
+	Ks 0 0 0
+	Ka 0.34902 0.252833 0.00137409
+	map_Kd axle.jpg
+
+newmtl base0
+	Ns 2
+	d 1
+	illum 2
+	Kd 0.996078 0.721569 0.00392157
+	Ks 0 0 0
+	Ka 0.34902 0.252833 0.00137409
+	map_Kd base.jpg
+
+newmtl blister0
+	Ns 2
+	d 1
+	illum 2
+	Kd 0.329412 0.211765 0.00784314
+	Ks 0 0 0
+	Ka 0.34902 0.22437 0.00830999
+	map_Kd bliste.jpg
+
+newmtl bumper0
+	Ns 2
+	d 1
+	illum 2
+	Kd 0.0823529 0.0823529 0.0823529
+	Ks 0 0 0
+	Ka 0.34902 0.34902 0.34902
+
+newmtl bumper_10
+	Ns 2
+	d 1
+	illum 2
+	Kd 0.0823529 0.0823529 0.0823529
+	Ks 0 0 0
+	Ka 0.34902 0.34902 0.34902
+
+newmtl centerstrut0
+	Ns 2
+	d 1
+	illum 2
+	Kd 0.329412 0.211765 0.00784314
+	Ks 0 0 0
+	Ka 0.34902 0.22437 0.00830999
+	map_Kd center.jpg
+
+newmtl centerstrut_10
+	Ns 2
+	d 1
+	illum 2
+	Kd 0.329412 0.211765 0.00784314
+	Ks 0 0 0
+	Ka 0.34902 0.22437 0.00830999
+	map_Kd center1.jpg
+
+newmtl combing0
+	Ns 21
+	d 1
+	illum 2
+	Kd 0.345098 0.203922 0.00784314
+	Ks 0 0 0
+	Ka 0.34902 0.206239 0.00793226
+	map_Kd combin.jpg
+
+newmtl cowl0
+	Ns 2
+	d 1
+	illum 2
+	Kd 0.364706 0.196078 0
+	Ks 0 0 0
+	Ka 0.34902 0.187645 0
+	map_Kd cowl.jpg
+
+newmtl cowltop0
+	Ns 21
+	d 1
+	illum 2
+	Kd 0.164706 0.247059 0.172549
+	Ks 0 0 0
+	Ka 0.23268 0.34902 0.24376
+	map_Kd cowlto.jpg
+
+newmtl door0
+	Ns 21
+	d 1
+	illum 2
+	Kd 0.164706 0.247059 0.172549
+	Ks 0 0 0
+	Ka 0.23268 0.34902 0.24376
+	map_Kd door.jpg
+
+newmtl door_10
+	Ns 21
+	d 1
+	illum 2
+	Kd 0.164706 0.247059 0.172549
+	Ks 0 0 0
+	Ka 0.23268 0.34902 0.24376
+	map_Kd door_1.jpg
+
+newmtl door_20
+	Ns 2
+	d 1
+	illum 2
+	Kd 0.227451 0.243137 0.0980392
+	Ks 0 0 0
+	Ka 0.326502 0.34902 0.140734
+	map_Kd door_2.jpg
+
+newmtl door_30
+	Ns 2
+	d 1
+	illum 2
+	Kd 0.329412 0.211765 0.00784314
+	Ks 0 0 0
+	Ka 0.34902 0.22437 0.00830999
+	map_Kd door_3.jpg
+
+newmtl exhaust0
+	Ns 2
+	d 1
+	illum 2
+	Kd 0.0823529 0.0823529 0.0823529
+	Ks 0 0 0
+	Ka 0.34902 0.34902 0.34902
+
+newmtl fin0
+	Ns 21
+	d 1
+	illum 2
+	Kd 0.329412 0.211765 0.00784314
+	Ks 0 0 0
+	Ka 0.34902 0.22437 0.00830999
+	map_Kd fin.jpg
+	map_bump -bm 0.25 fin1.jpg
+
+newmtl form0
+	Ns 21
+	d 1
+	illum 2
+	Kd 0.164706 0.247059 0.172549
+	Ks 0 0 0
+	Ka 0.23268 0.34902 0.24376
+	map_Kd form.jpg
+
+newmtl fueltank0
+	Ns 21
+	d 1
+	illum 2
+	Kd 0.996078 0.721569 0.00392157
+	Ks 0 0 0
+	Ka 0.34902 0.252833 0.00137409
+	map_Kd fuelta.jpg
+
+newmtl fuselage0
+	Ns 21
+	d 1
+	illum 2
+	Kd 0.356863 0.176471 0.0352941
+	Ks 0 0 0
+	Ka 0.34902 0.172592 0.0345184
+	map_Kd fusela.jpg
+
+newmtl fuselage_10
+	Ns 2
+	d 1
+	illum 2
+	Kd 0.0823529 0.0823529 0.0823529
+	Ks 0 0 0
+	Ka 0.34902 0.34902 0.34902
+
+newmtl intake0
+	Ns 21
+	d 1
+	illum 2
+	Kd 0.164706 0.247059 0.172549
+	Ks 0 0 0
+	Ka 0.23268 0.34902 0.24376
+	map_Kd intake.jpg
+
+newmtl lighta0
+	Ns 2
+	d 1
+	illum 2
+	Kd 0.329412 0.211765 0.00784314
+	Ks 0 0 0
+	Ka 0.34902 0.22437 0.00830999
+	map_Kd lighta.jpg
+
+newmtl lighta_10
+	Ns 139
+	d 0.75
+	illum 2
+	Kd 0 0 0
+	Ks 0 0 0
+	Ka 0.34902 0.34902 0.34902
+
+newmtl lighta_20
+	Ns 2
+	d 1
+	illum 2
+	Kd 0.996078 0.721569 0.00392157
+	Ks 0 0 0
+	Ka 0.34902 0.252833 0.00137409
+	map_Kd lighta1.jpg
+
+newmtl lighta_30
+	Ns 139
+	d 0.75
+	illum 2
+	Kd 0 0 0
+	Ks 0 0 0
+	Ka 0.34902 0.34902 0.34902
+
+newmtl lighta_40
+	Ns 2
+	d 1
+	illum 2
+	Kd 0.996078 0.721569 0.00392157
+	Ks 0 0 0
+	Ka 0.34902 0.252833 0.00137409
+	map_Kd lighta2.jpg
+
+newmtl lighta_50
+	Ns 139
+	d 0.31
+	illum 2
+	Kd 0 0 0
+	Ks 0 0 0
+	Ka 0.34902 0.34902 0.34902
+
+newmtl littlebit0
+	Ns 21
+	d 1
+	illum 2
+	Kd 0.164706 0.247059 0.172549
+	Ks 0 0 0
+	Ka 0.23268 0.34902 0.24376
+	map_Kd little.jpg
+
+newmtl ltail0
+	Ns 21
+	d 1
+	illum 2
+	Kd 1 0.694118 0.0235294
+	Ks 0 0 0
+	Ka 0.34902 0.242261 0.00821223
+	map_Kd ltail.jpg
+	map_bump -bm 0.25 ltail1.jpg
+
+newmtl nose0
+	Ns 21
+	d 1
+	illum 2
+	Kd 0.164706 0.247059 0.172549
+	Ks 0 0 0
+	Ka 0.23268 0.34902 0.24376
+	map_Kd nose.jpg
+
+newmtl sidewindow0
+	Ns 21
+	d 1
+	illum 2
+	Kd 0.164706 0.247059 0.172549
+	Ks 0 0 0
+	Ka 0.23268 0.34902 0.24376
+	map_Kd sidewi.jpg
+
+newmtl sidewindow_10
+	Ns 2
+	d 1
+	illum 2
+	Kd 0.329412 0.211765 0.00784314
+	Ks 0 0 0
+	Ka 0.34902 0.22437 0.00830999
+	map_Kd sidewi1.jpg
+
+newmtl skid0
+	Ns 2
+	d 1
+	illum 2
+	Kd 0.0823529 0.0823529 0.0823529
+	Ks 0 0 0
+	Ka 0.34902 0.34902 0.34902
+
+newmtl spat0
+	Ns 2
+	d 1
+	illum 2
+	Kd 0.996078 0.721569 0.00392157
+	Ks 0 0 0
+	Ka 0.34902 0.252833 0.00137409
+	map_Kd spat.jpg
+
+newmtl spat_10
+	Ns 2
+	d 1
+	illum 2
+	Kd 0.996078 0.721569 0.00392157
+	Ks 0 0 0
+	Ka 0.34902 0.252833 0.00137409
+	map_Kd spat_1.jpg
+
+newmtl sphere0
+	Ns 2
+	d 1
+	illum 2
+	Kd 0.996078 0.721569 0.00392157
+	Ks 0 0 0
+	Ka 0.34902 0.252833 0.00137409
+	map_Kd sphere.jpg
+
+newmtl sphere_10
+	Ns 2
+	d 1
+	illum 2
+	Kd 0.996078 0.721569 0.00392157
+	Ks 0 0 0
+	Ka 0.34902 0.252833 0.00137409
+	map_Kd sphere1.jpg
+
+newmtl spinner0
+	Ns 2
+	d 1
+	illum 2
+	Kd 0.0823529 0.0823529 0.0823529
+	Ks 0 0 0
+	Ka 0.34902 0.34902 0.34902
+
+newmtl strut10
+	Ns 2
+	d 1
+	illum 2
+	Kd 0.996078 0.721569 0.00392157
+	Ks 0 0 0
+	Ka 0.34902 0.252833 0.00137409
+	map_Kd strut1.jpg
+
+newmtl strut1_10
+	Ns 2
+	d 1
+	illum 2
+	Kd 0.996078 0.721569 0.00392157
+	Ks 0 0 0
+	Ka 0.34902 0.252833 0.00137409
+	map_Kd strut11.jpg
+
+newmtl tip0
+	Ns 21
+	d 1
+	illum 2
+	Kd 0.164706 0.247059 0.172549
+	Ks 0 0 0
+	Ka 0.23268 0.34902 0.24376
+	map_Kd tip.jpg
+
+newmtl tyre0
+	Ns 2
+	d 1
+	illum 2
+	Kd 0.0823529 0.0823529 0.0823529
+	Ks 0 0 0
+	Ka 0.34902 0.34902 0.34902
+
+newmtl tyre_10
+	Ns 2
+	d 1
+	illum 2
+	Kd 0.0823529 0.0823529 0.0823529
+	Ks 0 0 0
+	Ka 0.34902 0.34902 0.34902
+
+newmtl window0
+	Ns 21
+	d 1
+	illum 2
+	Kd 0.164706 0.247059 0.172549
+	Ks 0 0 0
+	Ka 0.23268 0.34902 0.24376
+	map_Kd window.jpg
+
+newmtl window_10
+	Ns 2
+	d 1
+	illum 2
+	Kd 0.329412 0.211765 0.00784314
+	Ks 0 0 0
+	Ka 0.34902 0.22437 0.00830999
+	map_Kd window1.jpg
+
+newmtl winglower0
+	Ns 21
+	d 1
+	illum 2
+	Kd 0.996078 0.737255 0
+	Ks 0 0 0
+	Ka 0.34902 0.258329 0
+	map_Kd winglo.jpg
+	map_bump -bm 0.25 winglo1.jpg
+
+newmtl wingstrut0
+	Ns 2
+	d 1
+	illum 2
+	Kd 0.329412 0.211765 0.00784314
+	Ks 0 0 0
+	Ka 0.34902 0.22437 0.00830999
+	map_Kd wingst.jpg
+
+newmtl wingstrut_10
+	Ns 2
+	d 1
+	illum 2
+	Kd 0.329412 0.211765 0.00784314
+	Ks 0 0 0
+	Ka 0.34902 0.22437 0.00830999
+	map_Kd wingst1.jpg
+
+newmtl wingstrut_20
+	Ns 2
+	d 1
+	illum 2
+	Kd 0.329412 0.211765 0.00784314
+	Ks 0 0 0
+	Ka 0.34902 0.22437 0.00830999
+	map_Kd wingst2.jpg
+
+newmtl wingstrut_30
+	Ns 2
+	d 1
+	illum 2
+	Kd 0.329412 0.211765 0.00784314
+	Ks 0 0 0
+	Ka 0.34902 0.22437 0.00830999
+	map_Kd wingst3.jpg
+
+newmtl wingupper0
+	Ns 21
+	d 1
+	illum 2
+	Kd 0.996078 0.721569 0.00392157
+	Ks 0 0 0
+	Ka 0.34902 0.252833 0.00137409
+	map_Kd wingup.jpg
+

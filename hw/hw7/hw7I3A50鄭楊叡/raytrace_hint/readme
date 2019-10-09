@@ -1,0 +1,18 @@
+main.cpp:
+	opengl/viewer framework
+	display callback
+	opengl counterparts
+texture.cpp:
+	texture (checkerboard) set up
+scene.cpp:
+	intersection and normal evaluation drive
+ray.cpp:
+	ray-trace main driver, calling raytrace
+raytrace.cpp:
+	main routine: I = Ilocal + Kr*R + Kt*T
+triangle.cpp:
+	ray-triangle intersection driver
+rayTriangle.cpp:
+	Moller-Trumbore code
+quadrics.cpp:
+	ray-quadrics intersection

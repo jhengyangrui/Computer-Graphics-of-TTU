@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#info {
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    padding: 16px;
+    text-align: center;
+    color: #ffffff
+}
+</style>
+</head>
+
+<body>
+<div id="info"><font color = #00ff00>Z </font> start or stop
+</div>
+<script src = "js/three.min.js"></script>
+<script src = "js/OrbitControls.js"></script>
+<script src="js/stats.min.js"></script>
+
+
+<script src = "js/KeyboardState.js"></script>
+
+<script>
+var camera, scene, renderer, sun, earth, earth2, angle = 0,
+    clock;//, control;
+var controls, keyboard = new KeyboardState();
+var turn = true;
+var dt = 0;
+var clock = new THREE.Clock();
+init();
+animate();
+
+function init() {
+    soundTrack = document.getElementById ('soundtrack');
+	
+    scene = new THREE.Scene();
+
+    camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 10000);
+    camera.position.z = 500;
+    scene.add(camera);
+
+	// STATS
+	/*stats = new Stats();
+	stats.domElement.style.position = 'absolute';
+	stats.domElement.style.top = '0px';
+	stats.domElement.style.zIndex = 100;
+	document.body.appendChild( stats.domElement );	*/
+
+
+    light = new THREE.PointLight(0xffffff);
+    light.position.set(0, 0, 0);
+    scene.add(light);
+
+    renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setClearColor(0x888888);
+
+    control = new THREE.OrbitControls(camera, renderer.domElement);
+    document.body.appendChild(renderer.domElement);
+    window.addEventListener('resize', onWindowResize, false);
+}
+
+function onWindowResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+}
+function toggleTurn ()
+{
+	turn = !turn;
+}
+function animate() {
+ var dt = clock.getDelta();
+
+ var x = 50*Math.cos(angle);
+ var z = 50*Math.sin(angle);
+
+ //if (turn) {  // this is error-prone
+ /*if (toycar !== undefined && turn) { 
+ toycar.scale.set (0.2,0.2,0.2);
+ toycar.position.set (x,0,z);
+ toycar.rotation.y = -(angle+Math.PI);
+ angle -= dt;
+ }*/
+ 
+ requestAnimationFrame ( animate );  
+ update();
+ render(); 
+}
+function update()
+{	
+	if(keyboard.down("Z"))
+		toggleTurn();
+	keyboard.update();
+}
+function render() {
+//    angle = clock.getElapsedTime();
+
+	if(turn){
+	angle -= dt * 5;
+		//angle += 0.0001
+	//angle = clock.getDelta()/100;
+    earth.position.set(100 * Math.cos(angle*Math.PI/180), 0, -100 * Math.sin(angle*Math.PI/180));
+	earth.rotation.y = angle*100*Math.PI/180;
+    //earth.rotation.y = 365*angle;
+	
+	//earth2.position.set(80 * Math.cos(angle), 0, -80 * Math.sin(angle));
+    //earth2.rotation.y = angle;
+
+    angle2 = angle * 12;
+    moon.position.set(30 * Math.cos((angle2-angle*100)*Math.PI/180), 0, -30 * Math.sin((angle2-angle*100)*Math.PI/180));
+    moon.rotation.y = (angle2-(angle*100))*Math.PI/180;
+	}
+
+    renderer.render(scene, camera);
+}
+
+
+</script>
+</body>
+
+</html>

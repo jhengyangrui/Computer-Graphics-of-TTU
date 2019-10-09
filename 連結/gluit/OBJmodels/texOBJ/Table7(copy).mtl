@@ -1,0 +1,28 @@
+# 
+# Wavefront material file
+# Converted by the DEEP Exploration  2.1.10.1214
+# Right Hemisphere, LTD
+# http://www.righthemisphere.com/
+# 
+
+newmtl w__mahogony
+Ka 0 0 0
+Kd 0.737255 0.678431 0.501961
+Ks 0.156863 0.156863 0.156863
+illum 2
+Ns 2048
+map_Kd wood1.png
+
+newmtl goldd
+Ka 0 0 0
+Kd 0.337255 0.219608 0.0666667
+Ks 0.733333 0.662745 0.521569
+illum 2
+Ns 2048
+
+newmtl plastik_______
+Ka 0 0 0
+Kd 0.909804 0.854902 0.803922
+Ks 0.156863 0.156863 0.156863
+illum 2
+Ns 1351.18

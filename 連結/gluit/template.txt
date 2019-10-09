@@ -1,0 +1,33 @@
+#include "gluit.h"
+
+int mainwin, viewer;
+void display(){}
+void reshape(int w, int h)
+{
+	glViewport(0,0,w,h);
+	ViewerReshape(viewer);
+}
+void content()
+{
+	glClear (GL_DEPTH_BUFFER_BIT|GL_COLOR_BUFFER_BIT);
+	glutSwapBuffers();
+}
+void init()
+{
+	glEnable (GL_DEPTH_TEST);
+}
+
+void main (int argc, char** argv)
+{
+	glutInit (&argc, argv);
+	glutInitDisplayMode (GLUT_RGB|GLUT_DOUBLE|GLUT_DEPTH);
+	glutInitWindowSize (400,400);
+	mainwin = glutCreateWindow ("tst");
+
+	glutDisplayFunc(display);
+	glutReshapeFunc(reshape);
+
+	viewer = ViewerNew (mainwin, 0,0,400,400, content);
+	init();
+	glutMainLoop();
+}

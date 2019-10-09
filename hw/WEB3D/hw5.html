@@ -1,0 +1,351 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#container {
+    width:60%;
+    float:left;
+    background-color:pink;
+   margin-top: 5px;
+}
+#cnvsFrame {
+    height: 0;
+    padding-bottom:100%;
+}
+
+.fl {
+    float:left;
+    margin:20px;
+}
+.flc {
+    float:right;
+    margin:5px;
+    width:10%;
+}
+body {
+    overflow: auto;
+}
+</style>
+</head>
+
+
+<body>
+<script src = "js/r70three.min.js"></script>
+<script src = "js/OrbitControls.js"></script>
+<script src="js/KeyboardState.js"></script>
+<script src="js/stats.min.js"></script>
+
+<div id="container">
+<div id="cnvsFrame">
+    <canvas id="cnvs"> </canvas>
+</div>
+</div>
+
+    <img src="http://i.imgur.com/X2CsNCT.jpg" class="flc" onclick="javascript:tst(1);" />
+    <img src="http://i.imgur.com/ND0VPlt.jpg" class="flc" onclick="javascript:tst(2);" />
+    <img src="http://i.imgur.com/MPxQBti.jpg" class="flc" onclick="javascript:tst(3);" />
+    <img src="http://i.imgur.com/sqprZKi.jpg" class="flc" onclick="javascript:tst(4);" />
+<div style="clear:both"></div>
+<hr>
+<p class='fl'>
+</script>
+
+<script>
+var camera, scene, renderer, light, controls;
+var tex1, tex2, tex3, tex4;
+
+var geometrywall, materialwall, meshwalla, meshwallb, meshwallc;
+
+var geometry1, material1, mesh1;
+var geometry2, material2, mesh2;
+var geometry3, material3, mesh3;
+
+var raycaster;
+var mouse = new THREE.Vector2();
+var pickables = [];
+
+var choose;
+/*var planea, picture;
+var planeb,picture2;
+var planec,picture3;*/
+
+init();
+animate();
+function init() {
+    var theCanvas = document.getElementById("cnvs");
+    var theCanvasFrame = document.getElementById("cnvsFrame");
+
+    renderer = new THREE.WebGLRenderer({
+        canvas: theCanvas,
+        antialias: true
+    });
+    var ww = theCanvasFrame.clientWidth;
+    var hh = theCanvasFrame.clientHeight;
+    renderer.setSize(ww, hh);
+    renderer.setClearColor(0x222222);
+
+    scene = new THREE.Scene();
+
+    camera = new THREE.PerspectiveCamera(50, ww/hh, 1, 1000);
+    //camera.position.y = 150;
+    camera.position.z = 200;
+    scene.add(camera);
+
+    //////////////////////////////////////////////////////
+    THREE.ImageUtils.crossOrigin = '';
+    tex1 = THREE.ImageUtils.loadTexture('http://i.imgur.com/X2CsNCT.jpg');
+    tex2 = THREE.ImageUtils.loadTexture('http://i.imgur.com/ND0VPlt.jpg');
+    tex3 = THREE.ImageUtils.loadTexture('http://i.imgur.com/MPxQBti.jpg');
+    tex4 = THREE.ImageUtils.loadTexture('http://i.imgur.com/sqprZKi.jpg');
+	//wall
+	geometrywall = new THREE.BoxGeometry( 200, 100, 5 );
+	materialwall = new THREE.MeshLambertMaterial();
+	
+	meshwalla = new THREE.Mesh( geometrywall, materialwall );
+	meshwalla.position.set(0,50,-50);
+	scene.add( meshwalla );
+	
+	meshwallb = new THREE.Mesh( geometrywall, materialwall );
+	meshwallb.position.set(-100,50,50);
+	meshwallb.rotation.y = Math.PI/2;
+	scene.add( meshwallb );
+
+	meshwallc = new THREE.Mesh( geometrywall, materialwall );
+	meshwallc.position.set(100,50,50);
+	meshwallc.rotation.y = -Math.PI/2;
+	scene.add( meshwallc );
+	
+	//picture
+	geometry1 = new THREE.BoxGeometry( 100, 50, 5 );
+	material1 = new THREE.MeshLambertMaterial({color: 0xff0000});
+	mesh1 = new THREE.Mesh( geometry1, material1 );
+	mesh1.position.set(0,20,5);
+	mesh1.name = "a";
+	meshwalla.add( mesh1 );
+		
+	geometry2 = new THREE.BoxGeometry( 100, 50, 5 );
+	material2 = new THREE.MeshLambertMaterial({color: 0x0000ff});
+	mesh2 = new THREE.Mesh( geometry2, material2 );
+	mesh2.position.set(-95,20,100);
+	//meshwallb.add( mesh2 );	
+	mesh2.rotation.y = Math.PI/2;
+	mesh2.name = "b";
+	meshwalla.add(mesh2);
+	
+	geometry3 = new THREE.BoxGeometry( 100, 50, 5 );
+	material3 = new THREE.MeshLambertMaterial({color: 0x00ff00});
+	mesh3 = new THREE.Mesh( geometry3, material3 );
+	//mesh3.position.set(0,20,5);
+	//meshwallc.add( mesh3 );
+	mesh3.position.set(95,20,100);
+	//meshwallb.add( mesh2 );	
+	mesh3.rotation.y = -Math.PI/2;
+	mesh3.name = "c";
+	meshwalla.add(mesh3);
+	
+	//floor
+	/**/var floorTexture = new THREE.ImageUtils.loadTexture( 'images/floor.jpg' );
+    var ground = new THREE.Mesh(new THREE.PlaneGeometry(400, 400),new THREE.MeshLambertMaterial({ map: floorTexture, side: THREE.DoubleSide }));
+    ground.rotation.x = Math.PI / 2;
+    scene.add(ground);
+
+	
+    light = new THREE.PointLight(0xffffff);
+    light.position.set(0, 300, 200);
+    scene.add(light);
+
+    /*var gridXZ = new THREE.GridHelper(150, 10);
+    gridXZ.setColors(new THREE.Color(0xff0000), new THREE.Color(0xffffff));
+    scene.add(gridXZ);*/
+	
+	
+
+    controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+    // the following is not needed for "embed" mode
+    // document.body.appendChild(renderer.domElement);
+
+    window.addEventListener ('resize', onWindowResize, false);
+	raycaster = new THREE.Raycaster();
+    document.addEventListener('mousedown', onDocumentMouseDown, false);
+	document.addEventListener('mousemove', onDocumentMouseMove, false);
+
+    /*renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setClearColor(0x888888);
+
+    controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+    document.body.appendChild(renderer.domElement);
+
+    raycaster = new THREE.Raycaster();
+    document.addEventListener('mousedown', onDocumentMouseDown, false);
+    document.addEventListener('mousemove', onDocumentMouseMove, false);*/
+}
+
+// remember "no warp in <body>"
+//
+
+function choosewall(abc) {
+	if (abc == "a") {
+		choose = 1;//第一面牆
+	}else if(abc == "b"){
+	    choose = 2;//第二面牆
+	}else if(abc == "c"){
+	    choose = 3;//第三面牆
+	}
+}
+function tst(which) {
+	if(choose == 1){
+		if (which === 1) {
+			//alert("click");
+			mesh1.material = new THREE.MeshBasicMaterial({
+				map: tex1,
+				side: THREE.DoubleSide
+			});
+		} else if (which === 2) {
+			mesh1.material = new THREE.MeshBasicMaterial({
+				map: tex2,
+				side: THREE.DoubleSide
+			});
+		} else if (which === 3) {
+			mesh1.material = new THREE.MeshBasicMaterial({
+				map: tex3,
+				side: THREE.DoubleSide
+			});
+		} else if (which === 4) {
+			mesh1.material = new THREE.MeshBasicMaterial({
+				map: tex4,
+				side: THREE.DoubleSide
+			});
+		}
+	}
+	if(choose == 2){
+		if (which === 1) {
+			//alert("click");
+			mesh2.material = new THREE.MeshBasicMaterial({
+				map: tex1,
+				side: THREE.DoubleSide
+			});
+		} else if (which === 2) {
+			mesh2.material = new THREE.MeshBasicMaterial({
+				map: tex2,
+				side: THREE.DoubleSide
+			});
+		} else if (which === 3) {
+			mesh2.material = new THREE.MeshBasicMaterial({
+				map: tex3,
+				side: THREE.DoubleSide
+			});
+		} else if (which === 4) {
+			mesh2.material = new THREE.MeshBasicMaterial({
+				map: tex4,
+				side: THREE.DoubleSide
+			});
+		}
+	}
+	if(choose == 3){
+		if (which === 1) {
+			//alert("click");
+			mesh3.material = new THREE.MeshBasicMaterial({
+				map: tex1,
+				side: THREE.DoubleSide
+			});
+		} else if (which === 2) {
+			mesh3.material = new THREE.MeshBasicMaterial({
+				map: tex2,
+				side: THREE.DoubleSide
+			});
+		} else if (which === 3) {
+			mesh3.material = new THREE.MeshBasicMaterial({
+				map: tex3,
+				side: THREE.DoubleSide
+			});
+		} else if (which === 4) {
+			mesh3.material = new THREE.MeshBasicMaterial({
+				map: tex4,
+				side: THREE.DoubleSide
+			});
+		}
+	}
+    // debugger;
+}
+function onDocumentMouseDown(event) {
+
+    // PICKING DETAILS: 
+    // convert mouse.xy = [-1,1]^2 (NDC)
+    // unproject (mouse.xy, 1) to a point on the far plane (in world coordinate)
+    // set raycaster (origin, direction)
+    // find intersection objects, (closest first) 
+    // each record as
+    // [ { distance, point, face, faceIndex, object }, ... ]
+
+    event.preventDefault();
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    // find intersections
+    var vector = new THREE.Vector3(mouse.x, mouse.y, 1).unproject(camera);
+    raycaster.set(camera.position, vector.sub(camera.position).normalize());
+    //var intersects = raycaster.intersectObjects(pickables);
+	var intersects = raycaster.intersectObjects(meshwalla.children);
+    if (intersects.length > 0) {
+        //debugger;
+		if(intersects[0].object.name === "a"){
+        //picture.position.copy(intersects[0].point);
+        //picture.rotation.copy (intersects[0].object.rotation);
+		choosewall("a");
+		}
+		else if(intersects[0].object.name === "b"){
+        //picture.position.copy(intersects[0].point);
+        //picture.rotation.copy (intersects[0].object.rotation);
+		choosewall("b");
+		}
+		else if(intersects[0].object.name === "c"){
+        //picture.position.copy(intersects[0].point);
+        //picture.rotation.copy (intersects[0].object.rotation);
+		choosewall("c");
+		}
+    }
+
+}
+
+function onDocumentMouseMove(event) {
+    /*event.preventDefault();
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+    //
+    var vector = new THREE.Vector3(mouse.x, mouse.y, 1).unproject(camera);
+    raycaster.set(camera.position, vector.sub(camera.position).normalize());
+    //var intersects = raycaster.intersectObjects(pickables);
+	var intersects = raycaster.intersectObjects(meshwalla.children);
+
+    if (intersects.length > 0) {
+        document.body.style.cursor = 'pointer';
+    } else {
+        document.body.style.cursor = 'auto';
+    }*/
+}
+
+function animate() {
+    controls.update();
+    requestAnimationFrame(animate);
+    render();
+}
+function onWindowResize()
+{
+	camera.aspect = theCanvasFrame.clientWidth / theCanvasFrame.clientHeight;
+	camera.updateProjectionMatrix();
+	renderer.setSize (theCanvasFrame.clientWidth, theCanvasFrame.clientHeight);
+}
+
+function render() {
+    renderer.render(scene, camera);
+}
+
+
+</script>
+</body>
+
+</html>

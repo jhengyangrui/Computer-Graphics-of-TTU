@@ -1,0 +1,13 @@
+# 
+# Wavefront material file
+# Converted by the DEEP Exploration  2.1.10.1214
+# Right Hemisphere, LTD
+# http://www.righthemisphere.com/
+# 
+
+newmtl wokod_mebel
+Ka 0 0 0
+Kd 0.498039 0.498039 0.498039
+Ks 0.156863 0.156863 0.156863
+illum 2
+Ns 724.077
